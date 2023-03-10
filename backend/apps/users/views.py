@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from django.shortcuts import redirect
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
@@ -79,6 +80,18 @@ class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
+class LogoutView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh_token"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 class RefreshViewSet(viewsets.ViewSet, TokenRefreshView):
     """ViewSet for refreshing tokens. Extended from TokenRefreshView"""

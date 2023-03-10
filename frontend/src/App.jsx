@@ -18,6 +18,7 @@ import ResetPassword from "./components/ResetPassword";
 import Verified from "./components/Verified";
 import Invalid from "./components/Invalid";
 import Documents from "./components/Documents";
+import AuthService from "./services/auth";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
@@ -28,7 +29,8 @@ const App = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarText, setSnackbarText] = useState("");
 
-  const signOut = () => {
+  const signOut = async () => {
+    await AuthService.logout();
     localStorage.removeItem("user");
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
