@@ -143,9 +143,7 @@ const HelpRequest = ({ helpRequest, update, OpenSnackbar, user }) => {
             </>
           ) : null}
         </Stack>
-        <div
-          dangerouslySetInnerHTML={{ __html: helpRequest.description }}
-        ></div>
+        <div>{helpRequest.description}</div>
       </CardContent>
       <Stack alignItems='center'>
         <CardActions>
