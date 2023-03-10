@@ -79,7 +79,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'apps.users',
     'apps.certifications',
-    'apps.help_requests'
+    'axes'
 ]
 
 MIDDLEWARE = [
@@ -91,7 +91,12 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware'
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'axes.middleware.AxesMiddleware'
+]
+
+AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesStandaloneBackend',
 ]
 
 ROOT_URLCONF = 'securehelp.urls'
