@@ -37,8 +37,11 @@ const newPassword = (data) => {
   return request.then((response) => response.data);
 };
 
-const logout = () => {
-  TokenService.removeUser();
+const logout = async () => {
+  const data = {
+    refresh_token: localStorage.getItem("refresh_token")
+  }
+  api.post("/logout/", data)
 };
 
 const getCurrentUser = () => {
