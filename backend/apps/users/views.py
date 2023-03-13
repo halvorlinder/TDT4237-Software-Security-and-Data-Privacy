@@ -112,7 +112,7 @@ class RefreshViewSet(viewsets.ViewSet, TokenRefreshView):
 class VerificationView(generics.GenericAPIView):
     """View for verifying user registration links"""
 
-    def get(self, request, uid):
+    def get(self, request, uid, token):
         verified_url = settings.URL + "/verified"
         invalid_url = settings.URL + "/invalid"
         try:
