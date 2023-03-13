@@ -79,7 +79,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'apps.users',
     'apps.certifications',
-    'apps.help_requests'
+    'apps.help_requests',
+    'axes'
 ]
 
 MIDDLEWARE = [
