@@ -24,12 +24,6 @@ PORT_PREFIX = os.environ.get("PORT_PREFIX", "")
 DOMAIN = os.environ.get("DOMAIN", "localhost")
 PROTOCOL = os.environ.get("PROTOCOL", "http")
 
-# Set Content Security Policy (CSP)
-CSP_DEFAULT_SRC = ("'self'")
-CSP_IMG_SRC = ("'self'")
-CSP_STYLE_SRC = ("'self'")
-CSP_SCRIPT_SRC = ("'self'")
-
 # Set the URL used for redirecting
 # URL in local development will not find environment variables and looks like: 'http://localhost:3000' (redirect to node)
 # URL in local production with docker can look like this: 'http://localhost:21190', where 190 is the GROUP_ID
@@ -90,7 +84,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'csp.middleware.CSPMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
